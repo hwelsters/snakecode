@@ -50,8 +50,11 @@ All you really need is Docker and Docker Compose. These tools will do the rest f
 
 ![rainbow](https://user-images.githubusercontent.com/84760072/208384585-03ebeb8d-25ad-4764-8c55-3952c670dce5.png)
 
-<h2>🤔 Why am I making this?</h2>
-Why not? Also, it's cool.
+<h2>🤔 Faq</h2>
+<ul>
+  <li><b>Why am I making this?</b> - I want to teach people how to program.
+  <li><b>Where's the source code?</b> - I'm actually planning on making money with this but I'll be willing to show my code on request.</li>
+</ul>Why not? Also, it's cool.
 
 <br/>
 
