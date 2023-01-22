@@ -33,23 +33,6 @@ I would love to go around telling people about the tech stack and just calling i
 
 ![rainbow](https://user-images.githubusercontent.com/84760072/208384585-03ebeb8d-25ad-4764-8c55-3952c670dce5.png)
 
-<h2> 📋 Execution Instructions</h2>
-All you really need is Docker and Docker Compose. These tools will do the rest for you.
-<ul>
-  <li><b>1</b> - Call <code>docker-compose up</code> at the root folder</li>
-  <li><b>2</b> - Do ten squats 🦵</li>
-  <li><b>3</b> - Do ten push ups 💪</li>
-  <li><b>4</b> - Profit 💰</li>
-</ul>
-
-<h2> 🔨 Some problems that may have to be ironed out</h2>
-<ul>
-  <li><b>There might be some problems if MySQL is installed on your PC</b> - If this is the case, you may have to stop MySQL's process before doing docker-compose up</li>
-</ul>
-
-
-![rainbow](https://user-images.githubusercontent.com/84760072/208384585-03ebeb8d-25ad-4764-8c55-3952c670dce5.png)
-
 <h2>🤔 Faq</h2>
 <ul>
   <li><b>Why am I making this?</b> - I want to teach people how to program.
