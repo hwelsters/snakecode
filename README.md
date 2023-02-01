@@ -12,7 +12,7 @@ Axolotl is a programming website made to teach python with interactive tutorials
   <li><b>A multi-page signup form</b> - Um, this is a signup form that's multi-paged. That's about it. It looks really cool tho.</li>
   <li><b>Fully dockerized application, mostly</b> - To allow weird people on the internet to try it out.</li>
 </ul>
-I'm done with most of the code part. Right now, I'm mostly working on creating content for users.
+We're done with most of the code part. Right now, we're mostly working on creating content for users.
 
 <br/>
 
