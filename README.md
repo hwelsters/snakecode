@@ -20,12 +20,12 @@ I'm done with most of the code part. Right now, I'm mostly working on creating c
 
 <h2>🥞 Tech stack</h2>
 <ul>
-  <li><b>MySQL</b> - As a database. I could use MongoDB but... I dunno, I just wanted to get better at SQL. I've done a ton of exercises with SQL but I've never really worked on anything significant with it.</li>
+  <li><b>MySQL</b> - As a database. we could use MongoDB but... I dunno, I just wanted to get better at SQL. I've done a ton of exercises with SQL but I've never really worked on anything significant with it.</li>
   <li><b>Express.JS</b> - As a backend web application framework</li>
   <li><b>React.JS</b> - For the frontend. It's basic but it will do. May or may not migrate to Next.JS sometime in the future </li>
   <li><b>Node.JS</b> - Again, basic but it works.</li>
   <li><b>Docker</b> - Just to containerize everything 📦</li>
-  <li><b>Terraform</b> - Because I'm cool like that 😎 but mainly because I'm lazy and AWS' UI is 🤮</li>
+  <li><b>Terraform</b> - Because we're cool like that 😎 but mainly because we're lazy and AWS' UI is 🤮</li>
 </ul>
 I would love to go around telling people about the tech stack and just calling it the MERN stack but instead of MongoDB, I used MySQL.
 
@@ -35,8 +35,8 @@ I would love to go around telling people about the tech stack and just calling i
 
 <h2>🤔 Faq</h2>
 <ul>
-  <li><b>Why am I making this?</b> - I want to teach people how to program.
-  <li><b>Where's the source code?</b> - I'm actually planning on making money with this but I'll be willing to show my code on request.</li>
+  <li><b>Why are we making this?</b> - I want to teach people how to program.
+  <li><b>Where's the source code?</b> - We're actually planning on making money with this but we'll be willing to show my code on request.</li>
 </ul>Why not? Also, it's cool.
 
 <br/>
