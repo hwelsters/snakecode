@@ -1,5 +1,5 @@
-<h1 align="center">🐱</h1>
-<h1 align="center"> Axolotl </h1>
+<h1 align="center">🐍</h1>
+<h1 align="center"> snakecode </h1>
 <h3 align="center"> The loveliest programming website in the world! </h3>
 <h5 align="center"> The coolest and most stylish way to learn algorithms and data structures in Python </h5>
 
