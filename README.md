@@ -1,7 +1,7 @@
 <h1 align="center">🐱</h1>
 <h1 align="center"> Axolotl </h1>
 <h3 align="center"> The loveliest programming website in the world! </h3>
-<h5 align="center"> A website to teach users how to program in python </h5>
+<h5 align="center"> The coolest and most stylish way to learn algorithms and data structures in Python </h5>
 
 <h2>🍝 Project description</h2>
 Axolotl is a programming website made to teach python with interactive tutorials.
