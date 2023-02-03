@@ -36,7 +36,7 @@ I would love to go around telling people about the tech stack and just calling i
 <h2>🤔 Faq</h2>
 <ul>
   <li><b>Why are we making this?</b> - I want to teach people how to program.
-  <li><b>Where's the source code?</b> - We're actually planning on making money with this but we'll be willing to show my code on request.</li>
+  <li><b>Where's the source code?</b> - We're actually planning on making money with this but we'll be willing to share our code with you if you would like to help out.</li>
 </ul>Why not? Also, it's cool.
 
 <br/>
