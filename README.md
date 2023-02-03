@@ -10,7 +10,6 @@ Axolotl is a programming website made to teach python with interactive tutorials
   <li><b>A built-in code editor</b> - To allow users to work on the exercises. </li>
   <li><b>Quizzes</b> - To test users on various topics.</li>
   <li><b>A multi-page signup form</b> - Um, this is a signup form that's multi-paged. That's about it. It looks really cool tho.</li>
-  <li><b>Fully dockerized application, mostly</b> - To allow weird people on the internet to try it out.</li>
 </ul>
 We're done with most of the code part. Right now, we're mostly working on creating content for users.
 
@@ -25,7 +24,6 @@ We're done with most of the code part. Right now, we're mostly working on creati
   <li><b>React.JS</b> - For the frontend. It's basic but it will do. May or may not migrate to Next.JS sometime in the future </li>
   <li><b>Node.JS</b> - Again, basic but it works.</li>
   <li><b>Docker</b> - Just to containerize everything 📦</li>
-  <li><b>Terraform</b> - Because we're cool like that 😎 but mainly because we're lazy and AWS' UI is 🤮</li>
 </ul>
 I would love to go around telling people about the tech stack and just calling it the MERN stack but instead of MongoDB, I used MySQL.
 
