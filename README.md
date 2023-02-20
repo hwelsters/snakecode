@@ -34,7 +34,7 @@ I would love to go around telling people about the tech stack and just calling i
 <h2>🤔 Faq</h2>
 <ul>
   <li><b>Why are we making this?</b> - The goal is to teach Python in order to learn algorithms and data structures. We will have a few chapters on every thing needed in Python to learn algorithms and data structures. The rest will teach algorithms and data structures.
-  <li><b>Where's the source code?</b> - We used fairy dust and magic sprinkles.</li>
+  <li><b>Where's the source code?</b> - 😏.</li>
 </ul>
 
 <br/>
