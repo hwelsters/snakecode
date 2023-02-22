@@ -1,5 +1,4 @@
-<h1 align="center">🐍</h1>
-<h1 align="center"> snakecode </h1>
+![image](https://user-images.githubusercontent.com/84760072/220569232-ebb9d21c-5442-4134-84fa-1d9b843ed125.png)
 <h3 align="center"> The loveliest programming website in the world! </h3>
 <h5 align="center"> The coolest and most stylish way to learn algorithms and data structures in Python </h5>
 
