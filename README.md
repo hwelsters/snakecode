@@ -1,7 +1,3 @@
-<p align="center">
-  <strong>This</strong> repository has been archived. A new version of the website is being worked on.
-</p>
-
 ![image](https://user-images.githubusercontent.com/84760072/221037523-b02b046a-1aa5-4eda-b2ec-26cb38c9282c.png)
 <p align="center">
   <strong><a href="http://www.snakecode.org/">Check out the website</a></strong>
