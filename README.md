@@ -22,7 +22,7 @@ We're done with most of the code part. Right now, we're mostly working on creati
   <li><b>Express.JS</b> - As a backend web application framework</li>
   <li><b>React.JS</b> - For the frontend. It's basic but it will do. May or may not migrate to Next.JS sometime in the future </li>
   <li><b>Node.JS</b> - Again, basic but it works.</li>
-  <li><b>Docker</b> - Just to containerize everything 📦</li>
+  <li><b>Docker</b> - Just to make local development a bit easier and for deployment 📦</li>
   <li><b>Terraform</b> - Because we're cool like that 😎 but mainly because we're lazy and AWS' UI is 🤮</li>
 </ul>
 I would love to go around telling people about the tech stack and just calling it the MERN stack but instead of MongoDB, I used MySQL.
