@@ -32,7 +32,7 @@ I would love to go around telling people about the tech stack and just calling i
 <h2>🤔 Faq</h2>
 <ul>
   <li><b>Why are we making this?</b> - I want to teach people how to program.
-  <li><b>Where's the source code?</b> - It's a mess right now. If there's sufficient demand for it, I wouldn't mind cleaning it up for open source.</li>
+  <li><b>Where's the source code?</b> - It's a mess right now. If there's sufficient demand for it, I wouldn't mind cleaning it up so that it can be worked on open-source</li>
 </ul>Why not? Also, it's cool.
 
 ![image][line]
