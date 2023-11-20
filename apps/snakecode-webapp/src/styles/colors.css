@@ -1,0 +1,24 @@
+:root {
+    --color-background: rgb(255, 255, 255);
+    --color-border: rgb(229, 229, 229);
+
+    --color-primary: rgb(245, 187, 118);
+    --color-green: rgb(129, 240, 146);
+    --color-red: rgb(194, 82, 146);
+
+    --color-primary-text: rgb(75, 75, 75);
+    --color-secondary-text: rgb(119, 119, 119);
+    --color-transparent: rgba(0, 0, 0, 0);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: rgb(32, 34, 37);
+        --color-border: rgb(46, 48, 53);
+
+        --color-primary: rgb(245, 187, 118);
+
+        --color-primary-text: rgb(255, 255, 255);
+        --color-secondary-text: rgb(183, 186, 191);
+    }
+}

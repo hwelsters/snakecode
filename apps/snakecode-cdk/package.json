@@ -1,0 +1,30 @@
+{
+  "name": "@snakecode/cdk",
+  "version": "0.1.0",
+  "license": "MIT",
+  "bin": {},
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --fix",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@snakecode/tsconfig": "1.0.0",
+    "@types/jest": "^29.5.3",
+    "@types/node": "20.4.5",
+    "eslint-config-snakecode-base": "1.0.0",
+    "jest": "^29.6.2",
+    "ts-jest": "^29.1.1",
+    "aws-cdk": "2.90.0",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.1.6"
+  },
+  "dependencies": {
+    "@snakecode/models": "1.0.0",
+    "aws-cdk-lib": "2.90.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}

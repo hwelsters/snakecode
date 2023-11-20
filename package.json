@@ -1,0 +1,26 @@
+{
+  "name": "snakecode",
+  "version": "1.0.0",
+  "description": "This is the main repository for Snakecode.",
+  "scripts": {
+    "build": "lerna run build --stream --include-dependencies",
+    "clean": "lerna run clean && rm -rf node_modules",
+    "lint": "lerna run lint",
+    "postinstall": "husky install",
+    "release": "yarn run clean && yarn install && yarn run build"
+  },
+  "devDependencies": {
+    "nx": "^16.6.0",
+    "patch-package": "^8.0.0",
+    "husky": "^8.0.3",
+    "lerna": "^7.1.5",
+    "typescript": "^4.9.4"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/*"
+    ]
+  },
+  "private": true
+}

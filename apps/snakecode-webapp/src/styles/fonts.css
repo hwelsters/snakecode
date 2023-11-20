@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/outfit/outfit.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cubano';
+    src: url('/fonts/cubano/cubano.ttf') format('truetype');
+}
