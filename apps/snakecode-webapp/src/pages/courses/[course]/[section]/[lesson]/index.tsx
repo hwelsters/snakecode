@@ -18,7 +18,7 @@ export default function Lesson() {
           <CloseIcon className="z-10 scale-125" />
         </button>
       </div>
-      <div className="z-10 flex w-full max-w-lg flex-col items-center">
+      <div className="z-10 flex w-11/12 max-w-lg flex-col items-center">
         <Coding />
         <span className="mt-8 flex w-full max-w-sm flex-row justify-between">
           <button
