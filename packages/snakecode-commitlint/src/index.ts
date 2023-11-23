@@ -7,7 +7,7 @@ export const setCommitLintConfig = () => {
 
     // Any rules defined below here will override rules from @commitlint/config-conventional
     rules: {
-      'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'revert', 'lint']],
+      'type-enum': [2, 'always', ['feat', 'fix', 'ci', 'docs', 'style', 'refactor', 'test', 'revert', 'lint']],
       'subject-empty': [2, 'never'],
       'subject-full-stop': [2, 'always', '.'],
       'subject-max-length': [2, 'always', 72],
