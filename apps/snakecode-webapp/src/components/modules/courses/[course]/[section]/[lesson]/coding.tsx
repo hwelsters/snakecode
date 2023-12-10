@@ -40,7 +40,9 @@ export default function Coding({ text, template, answer, completePage }: CodingP
       if (value.length === 0) setOutput('✒️ Your code is empty... try writing something!')
       else {
         const pythonOutput = await runPython(value)
-        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : '') === 0) setIsCorrect(true)
+        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : '') === 0) {
+          setIsCorrect(true)
+        }
         setOutput(pythonOutput)
       }
     } catch (error: any) {
@@ -52,7 +54,7 @@ export default function Coding({ text, template, answer, completePage }: CodingP
   }
 
   const speechBubble = () => {
-    if (!showSpeechBubble) return ''
+    if (!showSpeechBubble) return <div />
     return isCorrect ? <SpeechBubble icon="⭐" title="Good job!" description="You persevered and succeeded!" /> : <SpeechBubble icon="❌" title="Try again" description="The output doesn't quite match..." />
   }
 
