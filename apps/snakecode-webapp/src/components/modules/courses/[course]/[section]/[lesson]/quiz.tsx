@@ -1,5 +1,6 @@
-import { useState } from "react"
-import SpeechBubble from "./speech-bubble"
+import { useState } from 'react'
+
+import SpeechBubble from './speech-bubble'
 
 interface QuizProps {
   text?: string
@@ -30,7 +31,14 @@ export default function Quiz({ text, options, correct, completePage }: QuizProps
 
       {options?.map((option: string, index: number) => {
         return (
-          <button className={`mb-2 mt-4 w-full -translate-y-2 space-x-2 rounded-sm border-2 border-pt px-4 py-3 text-left text-bg transition-all duration-50 ${index === selectedIndex ? "translate-y-0 bg-pc shadow-none" : "bg-pt shadow-[0_0.5rem_var(--color-primary)]"}`} type="button" onClick={() => setSelectedIndex(index)}>
+          <button
+            className={`mb-2 mt-4 w-full -translate-y-2 space-x-2 rounded-sm border-2 border-pt px-4 py-3 text-left text-bg transition-all duration-75 ${
+              index === selectedIndex ? 'translate-y-0 bg-pc shadow-none' : 'bg-pt shadow-[0_0.5rem_var(--color-primary)]'
+            }`}
+            key={option}
+            type="button"
+            onClick={() => setSelectedIndex(index)}
+          >
             <text className="font-bold">{index}</text>
             <text className="font-bold">::</text>
             <text className="">{option}</text>
@@ -39,11 +47,9 @@ export default function Quiz({ text, options, correct, completePage }: QuizProps
       })}
 
       <button className="mt-8 -translate-y-2 rounded-sm bg-pt px-8 py-3 font-display font-extralight text-bg shadow-[0_0.5rem_var(--color-primary)] active:translate-y-0 active:shadow-none" type="button" onClick={checkAnswer}>
-        {userIsCorrect ? "Continue" : "Check"}
+        {userIsCorrect ? 'Continue' : 'Check'}
       </button>
-      {showSpeechBubble &&
-        <SpeechBubble icon={userIsCorrect ? "⭐" : "❌"} title={userIsCorrect ? "Good Job!" : "Try again"} description={userIsCorrect ? "You persevered and you succeeded" : "You are so close, keep trying!"} />
-      }
+      {showSpeechBubble && <SpeechBubble icon={userIsCorrect ? '⭐' : '❌'} title={userIsCorrect ? 'Good Job!' : 'Try again'} description={userIsCorrect ? 'You persevered and you succeeded' : 'You are so close, keep trying!'} />}
     </div>
   )
 }

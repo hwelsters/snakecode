@@ -5,8 +5,8 @@ import CodeMirror from '@uiw/react-codemirror'
 
 import { PyodideContext } from '@/providers/pyodide-provider'
 
-import theme from './theme'
 import SpeechBubble from './speech-bubble'
+import theme from './theme'
 
 interface CodingProps {
   text?: string
@@ -16,7 +16,7 @@ interface CodingProps {
 }
 
 export default function Coding({ text, template, answer, completePage }: CodingProps) {
-  const [value, setValue] = useState<string>(template ? template : "")
+  const [value, setValue] = useState<string>(template || '')
   const [output, setOutput] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -37,10 +37,10 @@ export default function Coding({ text, template, answer, completePage }: CodingP
     setLoading(true)
     setShowSpeechBubble(false)
     try {
-      if (value.length == 0) setOutput("✒️ Your code is empty... try writing something!")
+      if (value.length === 0) setOutput('✒️ Your code is empty... try writing something!')
       else {
         const pythonOutput = await runPython(value)
-        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : "") === 0) setIsCorrect(true)
+        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : '') === 0) setIsCorrect(true)
         setOutput(pythonOutput)
       }
     } catch (error: any) {
@@ -49,6 +49,11 @@ export default function Coding({ text, template, answer, completePage }: CodingP
     }
     setLoading(false)
     setShowSpeechBubble(true)
+  }
+
+  const speechBubble = () => {
+    if (!showSpeechBubble) return ''
+    return isCorrect ? <SpeechBubble icon="⭐" title="Good job!" description="You persevered and succeeded!" /> : <SpeechBubble icon="❌" title="Try again" description="The output doesn't quite match..." />
   }
 
   return (
@@ -64,13 +69,10 @@ export default function Coding({ text, template, answer, completePage }: CodingP
           type="submit"
           disabled={loading && isPyodideLoading}
         >
-          {isCorrect ? "CONTINUE" : "SUBMIT"}
+          {isCorrect ? 'CONTINUE' : 'SUBMIT'}
         </button>
       </form>
-      {showSpeechBubble ? (isCorrect ?
-        <SpeechBubble icon="⭐" title="Good job!" description="You persevered and succeeded!" /> :
-        <SpeechBubble icon="❌" title="Try again" description="The output doesn't quite match..." />) : ""
-      }
+      {speechBubble()}
     </div>
   )
 }

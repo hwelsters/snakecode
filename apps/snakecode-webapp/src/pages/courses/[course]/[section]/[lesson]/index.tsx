@@ -22,23 +22,6 @@ export default function Lesson({ lesson }: { lesson: Array<any> }) {
 
   // The page in the lesson which is currently visible on screen.
   const [visiblePageIndex, setVisiblePageIndex] = useState<number>(0)
-  const [maxVisiblePageIndex, setMaxVisiblePageIndex] = useState<number>(0)
-
-  const parseLesson = (lesson: Array<any>, visiblePageIndex: number) => {
-    if (visiblePageIndex === lesson.length) return <></>
-
-    const currentPage = lesson[visiblePageIndex]
-    switch (currentPage.type) {
-      case 'description':
-        return <Description text={currentPage['main']} completePage={completePage} />
-      case 'quiz':
-        return <Quiz text={currentPage['main']} options={currentPage['options']} correct={currentPage['correct']} completePage={completePage} />
-      case 'coding':
-        return <Coding text={currentPage['main']} template={currentPage['template']} answer={currentPage['answer']} completePage={completePage}/>
-      default:
-        throw new Error(`${String(currentPage.type)} is an invalid type!`)
-    }
-  }
 
   const completePage = () => {
     const newCompletedPagesCount = clampNumber(visiblePageIndex + 1, completedPagesCount, lesson.length)
@@ -54,6 +37,22 @@ export default function Lesson({ lesson }: { lesson: Array<any> }) {
     setVisiblePageIndex(clampNumber(visiblePageIndex - 1, 0, completedPagesCount))
   }
 
+  const parseLesson = () => {
+    if (visiblePageIndex === lesson.length) return <div />
+
+    const currentPage = lesson[visiblePageIndex]
+    switch (currentPage.type) {
+      case 'description':
+        return <Description text={currentPage.main} completePage={completePage} />
+      case 'quiz':
+        return <Quiz text={currentPage.main} options={currentPage.options} correct={currentPage.correct} completePage={completePage} />
+      case 'coding':
+        return <Coding text={currentPage.main} template={currentPage.template} answer={currentPage.answer} completePage={completePage} />
+      default:
+        throw new Error(`${String(currentPage.type)} is an invalid type!`)
+    }
+  }
+
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-bg">
       <div className="absolute flex h-screen w-screen items-start justify-start text-pt">
@@ -62,7 +61,7 @@ export default function Lesson({ lesson }: { lesson: Array<any> }) {
         </button>
       </div>
       <div className="z-10 flex w-11/12 max-w-lg flex-col items-center">
-        {parseLesson(lesson, visiblePageIndex)}
+        {parseLesson()}
         <span className="mt-8 flex w-full max-w-sm flex-row justify-between">
           <button
             className="rounded-md border-2 bg-white p-1.5 text-pt shadow-[0_0.5rem_var(--color-primary)] enabled:active:translate-y-2 enabled:active:shadow-none disabled:brightness-90 dark:border-[var(--color-transparent)] dark:bg-pt dark:text-bg dark:disabled:brightness-75"
