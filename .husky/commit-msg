@@ -16,5 +16,3 @@ npx --no -- commitlint --edit $1 || (echo "commitlint failed, expected format is
 # '[]':              means OPTIONAL, will sometimes need to get replaced by some content
 #######################################################################################
 " && (exit 1))
-
-yarn run lint
