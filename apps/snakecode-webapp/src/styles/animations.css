@@ -1,0 +1,21 @@
+.pop {
+    animation-name: pop;
+    animation-duration: 400ms;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.025);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
