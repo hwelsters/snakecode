@@ -1,15 +1,58 @@
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 
 import Coding from '@/components/modules/courses/[course]/[section]/[lesson]/coding'
+import Description from '@/components/modules/courses/[course]/[section]/[lesson]/description'
+import Quiz from '@/components/modules/courses/[course]/[section]/[lesson]/quiz'
+import clampNumber from '@/utils/clampNumber'
 import { getAllStaticPaths, getLesson } from '@/utils/content'
 import removeLastPathSegment from '@/utils/removeLastPathSegment'
 
-export default function Lesson() {
+// TODO: Define a type for lesson instead of using any.
+export default function Lesson({ lesson }: { lesson: Array<any> }) {
   const router = useRouter()
+
+  // The number of pages in the lesson that the user has successfully completed.
+  const [completedPagesCount, setCompletedPagesCount] = useState<number>(0)
+
+  // The page in the lesson which is currently visible on screen.
+  const [visiblePageIndex, setVisiblePageIndex] = useState<number>(0)
+  const [maxVisiblePageIndex, setMaxVisiblePageIndex] = useState<number>(0)
+
+  const parseLesson = (lesson: Array<any>, visiblePageIndex: number) => {
+    if (visiblePageIndex === lesson.length) return <></>
+
+    const currentPage = lesson[visiblePageIndex]
+    switch (currentPage.type) {
+      case 'description':
+        return <Description text={currentPage['main']} completePage={completePage} />
+      case 'quiz':
+        return <Quiz text={currentPage['main']} options={currentPage['options']} correct={currentPage['correct']} completePage={completePage} />
+      case 'coding':
+        return <Coding text={currentPage['main']} template={currentPage['template']} answer={currentPage['answer']} completePage={completePage}/>
+      default:
+        throw new Error(`${String(currentPage.type)} is an invalid type!`)
+    }
+  }
+
+  const completePage = () => {
+    const newCompletedPagesCount = clampNumber(visiblePageIndex + 1, completedPagesCount, lesson.length)
+    setCompletedPagesCount(newCompletedPagesCount)
+    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, newCompletedPagesCount))
+  }
+
+  const nextPage = () => {
+    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, completedPagesCount))
+  }
+
+  const previousPage = () => {
+    setVisiblePageIndex(clampNumber(visiblePageIndex - 1, 0, completedPagesCount))
+  }
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-bg">
@@ -19,42 +62,49 @@ export default function Lesson() {
         </button>
       </div>
       <div className="z-10 flex w-11/12 max-w-lg flex-col items-center">
-        <Coding />
+        {parseLesson(lesson, visiblePageIndex)}
         <span className="mt-8 flex w-full max-w-sm flex-row justify-between">
           <button
-            className="rounded-md border-2 p-2 text-pt shadow-[0_0.25rem_var(--color-primary)] active:translate-y-1 active:shadow-none dark:border-[var(--color-transparent)] dark:bg-pt dark:text-bg"
+            className="rounded-md border-2 bg-white p-1.5 text-pt shadow-[0_0.5rem_var(--color-primary)] enabled:active:translate-y-2 enabled:active:shadow-none disabled:brightness-90 dark:border-[var(--color-transparent)] dark:bg-pt dark:text-bg dark:disabled:brightness-75"
             type="button"
             aria-label="previous page"
+            onClick={previousPage}
+            disabled={visiblePageIndex === 0}
           >
             <KeyboardArrowLeftRoundedIcon />
           </button>
           <button
-            className="rounded-md border-2 p-2 text-pt shadow-[0_0.25rem_var(--color-primary)] active:translate-y-1 active:shadow-none dark:border-[var(--color-transparent)] dark:bg-pt dark:text-bg"
+            className="rounded-md border-2 bg-white p-1.5 text-pt shadow-[0_0.5rem_var(--color-primary)] enabled:active:translate-y-2 enabled:active:shadow-none disabled:brightness-90 dark:border-[var(--color-transparent)] dark:bg-pt dark:text-bg dark:disabled:brightness-75"
             type="button"
             aria-label="next page"
+            onClick={nextPage}
+            disabled={visiblePageIndex === completedPagesCount}
           >
             <KeyboardArrowRightRoundedIcon />
           </button>
         </span>
         <span className="mt-10 h-3 w-full rounded-lg bg-bc">
-          <div className="h-full rounded-lg bg-pc" style={{ width: `${2 * (100 / 3)}%` }} />
+          <div className="h-full rounded-lg bg-pc transition-all duration-500" style={{ width: `${visiblePageIndex * (100 / lesson.length)}%` }} />
         </span>
       </div>
     </div>
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: getAllStaticPaths(),
     fallback: false
   }
 }
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  // Read the lesson from the markdown file based on the app's current context
+  const lesson = getLesson(context.params.course, context.params.section, context.params.lesson).data.content
+
   return {
     props: {
-      lesson: getLesson(context.params.course, context.params.section, context.params.lesson)
+      lesson
     }
   }
 }

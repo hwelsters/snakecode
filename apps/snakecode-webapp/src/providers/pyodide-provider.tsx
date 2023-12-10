@@ -23,7 +23,7 @@ export default function PyodideProvider({ children }: { children: React.ReactNod
   useEffect(() => {
     if (!hasLoadPyodideBeenCalled.current) {
       hasLoadPyodideBeenCalled.current = true
-      ;(async function () {
+      ;(async function loadPyodide() {
         pyodide.current = await globalThis.loadPyodide()
         setIsPyodideLoading(false)
       })()
@@ -38,7 +38,7 @@ export default function PyodideProvider({ children }: { children: React.ReactNod
           isPyodideLoading,
           runPython
         }),
-        [pyodide, isPyodideLoading, runPython]
+        [pyodide, isPyodideLoading]
       )}
     >
       {children}
