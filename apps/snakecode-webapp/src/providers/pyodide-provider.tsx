@@ -6,10 +6,14 @@ export interface PyodideContextInterface {
   runPython: (code: string) => Promise<string>
 }
 
-export const PyodideContext = createContext<PyodideContextInterface>(null)
+export const PyodideContext = createContext<PyodideContextInterface>({
+  pyodide: null,
+  isPyodideLoading: true,
+  runPython: async (code: string) => code
+})
 
 export default function PyodideProvider({ children }: { children: React.ReactNode }) {
-  const pyodide = useRef(null)
+  const pyodide = useRef<any>({ current: null })
   const hasLoadPyodideBeenCalled = useRef(false)
   const [isPyodideLoading, setIsPyodideLoading] = useState(true)
 
@@ -17,7 +21,7 @@ export default function PyodideProvider({ children }: { children: React.ReactNod
     if (pyodide.current == null) {
       return ''
     }
-    return pyodide.current.runPython(`import sys\nfrom io import StringIO\nsys.stdout = StringIO()\n${code}\nsys.stdout.getvalue()`)
+    return pyodide?.current?.runPython(`import sys\nfrom io import StringIO\nsys.stdout = StringIO()\n${code}\nsys.stdout.getvalue()`)
   }
 
   useEffect(() => {
