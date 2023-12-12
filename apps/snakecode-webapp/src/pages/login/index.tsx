@@ -1,8 +1,7 @@
-import FacebookIcon from '@mui/icons-material/Facebook'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import GoogleIcon from '@mui/icons-material/Google'
-
 import OAuthSignInButton from '@/components/modules/login/oauth-signin-button'
+import appleLogo from '@public/images/logos/apple.svg'
+import facebookLogo from '@public/images/logos/facebook.svg'
+import googleLogo from '@public/images/logos/google.svg'
 
 export default function Login() {
   return (
@@ -11,10 +10,10 @@ export default function Login() {
       <span className="mb-12 font-bold tracking-widest text-st">
         nice to meet you <text className="text-pc">again</text>
       </span>
-      <span className="mb-6 flex w-full max-w-xl flex-col justify-between space-y-4">
-        <OAuthSignInButton Icon={GoogleIcon} text="Login with Google" color="bg-pc text-white" />
-        <OAuthSignInButton Icon={FacebookIcon} text="Login with Facebook" color="bg-[#4867aa] text-white" />
-        <OAuthSignInButton Icon={GitHubIcon} text="Login with Apple" color="bg-black text-white" />
+      <span className="mb-6 flex w-full max-w-sm flex-col justify-between space-y-4">
+        <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" />
+        <OAuthSignInButton logo={facebookLogo} text="Facebook" color="bg-[#4867aa] text-white" />
+        <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" />
       </span>
     </main>
   )
