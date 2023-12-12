@@ -25,7 +25,10 @@ export class AmplifyStack extends Stack {
       description: `The ${APP_NAME} AWS Amplify Application`
     })
 
+    // Create the nested stack which will contain all the resources related to authentication.
     const authStack = new AmplifyAuthStack(this, `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`, {
+      stackName: `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`,
+      description: `This stack will contain all the ${APP_NAME} Auth related resources`,
       amplifyAuthConfiguration: props.amplifyStackConfiguration.amplifyAuthConfiguration,
       env: props.env
     })
