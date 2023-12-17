@@ -6,11 +6,12 @@ type OAuthSignInButtonPropType = {
   logo: StaticImport
   text: string
   color: string
+  onClick?: () => {}
 }
 
-export default function OAuthSignInButton({ logo, text, color }: OAuthSignInButtonPropType) {
+export default function OAuthSignInButton({ logo, text, color, onClick }: OAuthSignInButtonPropType) {
   return (
-    <button className={`flex flex-1 flex-row items-center space-x-4 rounded px-4 py-3 font-display ${color} transition-all duration-75 hover:scale-[100.5%] active:scale-100`} type="button">
+    <button className={`flex flex-1 flex-row items-center space-x-4 rounded px-4 py-3 font-display ${color} transition-all duration-75 hover:scale-[100.5%] active:scale-100`} type="button" onClick={onClick}>
       <Image className="h-5 w-5" src={logo} alt="text" />
       <span>{text}</span>
     </button>
