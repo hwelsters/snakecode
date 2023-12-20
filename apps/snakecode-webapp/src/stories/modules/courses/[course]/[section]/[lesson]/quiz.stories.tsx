@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react";
 
-import Quiz from '@/components/modules/courses/[course]/[section]/[lesson]/quiz'
+import Quiz from "@/components/modules/courses/[course]/[section]/[lesson]/quiz";
 
 const meta: Meta<typeof Quiz> = {
-  component: Quiz
-}
+  component: Quiz,
+};
 
-export default meta
-type Story = StoryObj<typeof Quiz>
+export default meta;
+type Story = StoryObj<typeof Quiz>;
 
 export const Primary: Story = {
-  render: () => <Quiz />
-}
+  render: () => <Quiz />,
+};

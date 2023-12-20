@@ -1,13 +1,13 @@
-import type { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import Image from 'next/image'
-import React from 'react'
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Image from "next/image";
+import React from "react";
 
 type OAuthSignInButtonPropType = {
-  logo: StaticImport
-  text: string
-  color: string
-  onClick?: () => {}
-}
+  logo: StaticImport;
+  text: string;
+  color: string;
+  onClick?: () => {};
+};
 
 export default function OAuthSignInButton({ logo, text, color, onClick }: OAuthSignInButtonPropType) {
   return (
@@ -15,5 +15,5 @@ export default function OAuthSignInButton({ logo, text, color, onClick }: OAuthS
       <Image className="h-5 w-5" src={logo} alt="text" />
       <span>{text}</span>
     </button>
-  )
+  );
 }

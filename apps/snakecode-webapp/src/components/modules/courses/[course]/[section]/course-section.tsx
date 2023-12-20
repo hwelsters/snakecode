@@ -1,16 +1,16 @@
-import { useMemo } from 'react'
+import { useMemo } from "react";
 
-import CourseUnit from './course-unit'
+import CourseUnit from "./course-unit";
 
 type CourseSectionType = {
-  index: number
-  title: string
-  description: string
-  units: Array<any>
-}
+  index: number;
+  title: string;
+  description: string;
+  units: Array<any>;
+};
 
 export default function CourseSection({ index, title, description, units }: CourseSectionType) {
-  const numberOfLessons = useMemo(() => units.reduce((partialSum, unit) => partialSum + unit.lessons.length, 0), [units])
+  const numberOfLessons = useMemo(() => units.reduce((partialSum, unit) => partialSum + unit.lessons.length, 0), [units]);
 
   return (
     <>
@@ -25,5 +25,5 @@ export default function CourseSection({ index, title, description, units }: Cour
         <CourseUnit key={unit.title} index={unitIndex} title={unit.title} description={unit.description} lessons={unit.lessons} />
       ))}
     </>
-  )
+  );
 }

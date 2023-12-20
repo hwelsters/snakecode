@@ -1,62 +1,62 @@
-import { useContext, useState } from 'react'
+import { useContext, useState } from "react";
 
-import { python } from '@codemirror/lang-python'
-import CodeMirror from '@uiw/react-codemirror'
+import { python } from "@codemirror/lang-python";
+import CodeMirror from "@uiw/react-codemirror";
 
-import { PyodideContext } from '@/providers/pyodide-provider'
+import { PyodideContext } from "@/providers/pyodide-provider";
 
-import SpeechBubble from './speech-bubble'
-import theme from './theme'
+import SpeechBubble from "./speech-bubble";
+import theme from "./theme";
 
 interface CodingProps {
-  text?: string
-  template?: string
-  answer?: string
-  completePage?: any
+  text?: string;
+  template?: string;
+  answer?: string;
+  completePage?: any;
 }
 
 export default function Coding({ text, template, answer, completePage }: CodingProps) {
-  const [value, setValue] = useState<string>(template || '')
-  const [output, setOutput] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
+  const [value, setValue] = useState<string>(template || "");
+  const [output, setOutput] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const [isCorrect, setIsCorrect] = useState<boolean>(false)
-  const [showSpeechBubble, setShowSpeechBubble] = useState<boolean>(false)
+  const [isCorrect, setIsCorrect] = useState<boolean>(false);
+  const [showSpeechBubble, setShowSpeechBubble] = useState<boolean>(false);
 
-  const { runPython, isPyodideLoading } = useContext(PyodideContext)
+  const { runPython, isPyodideLoading } = useContext(PyodideContext);
 
   const onChange = (val: string, _: any) => {
-    setValue(val)
-  }
+    setValue(val);
+  };
 
   const onSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    if (isCorrect) completePage()
+    if (isCorrect) completePage();
 
-    setLoading(true)
-    setShowSpeechBubble(false)
+    setLoading(true);
+    setShowSpeechBubble(false);
     try {
-      if (value.length === 0) setOutput('✒️ Your code is empty... try writing something!')
+      if (value.length === 0) setOutput("✒️ Your code is empty... try writing something!");
       else {
-        const pythonOutput = await runPython(value)
-        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : '') === 0) {
-          setIsCorrect(true)
+        const pythonOutput = await runPython(value);
+        if (pythonOutput.trim().localeCompare(answer ? answer.trim() : "") === 0) {
+          setIsCorrect(true);
         }
-        setOutput(pythonOutput)
+        setOutput(pythonOutput);
       }
     } catch (error: any) {
       // Fix at the moment
-      setOutput('❌ there is an error in your code!')
+      setOutput("❌ there is an error in your code!");
     }
-    setLoading(false)
-    setShowSpeechBubble(true)
-  }
+    setLoading(false);
+    setShowSpeechBubble(true);
+  };
 
   const speechBubble = () => {
-    if (!showSpeechBubble) return <div />
-    return isCorrect ? <SpeechBubble icon="⭐" title="Good job!" description="You persevered and succeeded!" /> : <SpeechBubble icon="❌" title="Try again" description="The output doesn't quite match..." />
-  }
+    if (!showSpeechBubble) return <div />;
+    return isCorrect ? <SpeechBubble icon="⭐" title="Good job!" description="You persevered and succeeded!" /> : <SpeechBubble icon="❌" title="Try again" description="The output doesn't quite match..." />;
+  };
 
   return (
     <div className="flex w-full flex-col items-center">
@@ -71,10 +71,10 @@ export default function Coding({ text, template, answer, completePage }: CodingP
           type="submit"
           disabled={loading && isPyodideLoading}
         >
-          {isCorrect ? 'CONTINUE' : 'SUBMIT'}
+          {isCorrect ? "CONTINUE" : "SUBMIT"}
         </button>
       </form>
       {speechBubble()}
     </div>
-  )
+  );
 }

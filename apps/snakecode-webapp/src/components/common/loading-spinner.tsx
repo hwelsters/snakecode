@@ -13,5 +13,5 @@ export default function LoadingSpinner() {
       </svg>
       <span className="sr-only">Loading...</span>
     </div>
-  )
+  );
 }

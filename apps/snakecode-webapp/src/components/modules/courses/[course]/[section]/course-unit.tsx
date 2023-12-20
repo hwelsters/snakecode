@@ -1,11 +1,11 @@
-import CourseButton from './lesson-button'
+import CourseButton from "./lesson-button";
 
 type CourseUnitType = {
-  index: number
-  title: string
-  description: string
-  lessons: Array<any> // Temporary
-}
+  index: number;
+  title: string;
+  description: string;
+  lessons: Array<any>; // Temporary
+};
 
 export default function CourseUnit({ index, title, description, lessons }: CourseUnitType) {
   return (
@@ -21,5 +21,5 @@ export default function CourseUnit({ index, title, description, lessons }: Cours
         <CourseButton key={lesson.title} title={lesson.title} type={lesson.type} href={lesson.lesson} />
       ))}
     </span>
-  )
+  );
 }

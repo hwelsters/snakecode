@@ -1,10 +1,10 @@
-import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
-import { Auth } from 'aws-amplify'
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
+import { Auth } from "aws-amplify";
 
-import OAuthSignInButton from '@/components/modules/login/oauth-signin-button'
-import appleLogo from '@public/images/logos/apple.svg'
-import facebookLogo from '@public/images/logos/facebook.svg'
-import googleLogo from '@public/images/logos/google.svg'
+import OAuthSignInButton from "@/components/modules/login/oauth-signin-button";
+import appleLogo from "@public/images/logos/apple.svg";
+import facebookLogo from "@public/images/logos/facebook.svg";
+import googleLogo from "@public/images/logos/google.svg";
 
 export default function Login() {
   return (
@@ -22,5 +22,5 @@ export default function Login() {
         </span>
       </span>
     </main>
-  )
+  );
 }

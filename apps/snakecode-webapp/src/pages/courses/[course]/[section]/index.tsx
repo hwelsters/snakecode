@@ -1,6 +1,6 @@
-import Navbar from '@/components/common/navbar'
-import CourseSection from '@/components/modules/courses/[course]/[section]/course-section'
-import { getAllStaticPaths, getSection } from '@/utils/content'
+import Navbar from "@/components/common/navbar";
+import CourseSection from "@/components/modules/courses/[course]/[section]/course-section";
+import { getAllStaticPaths, getSection } from "@/utils/content";
 
 export default function Courses({ section }: any) {
   return (
@@ -12,20 +12,20 @@ export default function Courses({ section }: any) {
         </div>
       </main>
     </div>
-  )
+  );
 }
 
 export const getStaticPaths = async () => {
   return {
     paths: getAllStaticPaths(),
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 export const getStaticProps = async (context: any) => {
   return {
     props: {
-      section: getSection(context.params.course, context.params.section)
-    }
-  }
-}
+      section: getSection(context.params.course, context.params.section),
+    },
+  };
+};
