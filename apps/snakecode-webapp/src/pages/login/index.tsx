@@ -1,3 +1,6 @@
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
+import { Auth } from 'aws-amplify'
+
 import OAuthSignInButton from '@/components/modules/login/oauth-signin-button'
 import appleLogo from '@public/images/logos/apple.svg'
 import facebookLogo from '@public/images/logos/facebook.svg'
@@ -11,7 +14,7 @@ export default function Login() {
         nice to meet you <text className="text-pc">again</text>
       </span>
       <span className="mb-6 flex w-full max-w-sm flex-col justify-between space-y-4">
-        <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" />
+        <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })} />
         <OAuthSignInButton logo={facebookLogo} text="Facebook" color="bg-[#4867aa] text-white" />
         <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" />
       </span>

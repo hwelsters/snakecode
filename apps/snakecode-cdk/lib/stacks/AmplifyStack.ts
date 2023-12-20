@@ -19,17 +19,18 @@ export class AmplifyStack extends Stack {
     super(scope, id, props)
 
     // The website uses NextJS SSG which will be deployed by uploading the .zip file to Amplify.
-    const amplifyApp = new aws_amplify.CfnApp(this, `${props.amplifyStackConfiguration.amplifyAppName}`, {
+    const amplifyApp = new aws_amplify.CfnApp(this, `${props.amplifyStackConfiguration.amplifyAppName}-${props.stage}-${props.env!.region}`, {
       name: `${props.amplifyStackConfiguration.amplifyAppName}`,
       iamServiceRole: `${props.amplifyStackConfiguration.amplifyServiceRoleName}`,
       description: `The ${APP_NAME} AWS Amplify Application`
     })
 
     // Create the nested stack which will contain all the resources related to authentication.
-    const authStack = new AmplifyAuthStack(this, `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`, {
+    const authStack = new AmplifyAuthStack(this, `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}-${props.stage}-${props.env!.region}`, {
       stackName: `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`,
       description: `This stack will contain all the ${APP_NAME} Auth related resources`,
       amplifyAuthConfiguration: props.amplifyStackConfiguration.amplifyAuthConfiguration,
+      stage: props.stage,
       env: props.env
     })
 
