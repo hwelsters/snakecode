@@ -6,14 +6,15 @@
     "build": "lerna run build --stream --include-dependencies",
     "clean": "lerna run clean && rm -rf node_modules",
     "lint": "lerna run lint",
+    "lint:staged": "lerna run lint:staged",
     "postinstall": "husky install",
     "release": "yarn run clean && yarn install && yarn run build"
   },
   "devDependencies": {
-    "nx": "^16.6.0",
-    "patch-package": "^8.0.0",
     "husky": "^8.0.3",
     "lerna": "^7.1.5",
+    "nx": "^16.6.0",
+    "patch-package": "^8.0.0",
     "typescript": "^4.9.4"
   },
   "workspaces": {
