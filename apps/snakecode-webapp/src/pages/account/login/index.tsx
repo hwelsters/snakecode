@@ -18,7 +18,7 @@ export default function Login() {
         <span className="mb-8 flex w-full flex-col space-y-4">
           <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })} />
           <OAuthSignInButton logo={facebookLogo} text="Facebook" color="bg-[#4867aa] text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Facebook })} />
-          <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" />
+          <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Apple })} />
         </span>
       </span>
     </main>
