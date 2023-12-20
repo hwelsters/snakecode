@@ -19,6 +19,7 @@ export const INFRA_CONFIG: StageConfiguration = {
       userPoolName: `${ENVIRONMENT_NAME}-user-pool`,
       userPoolClientName: `${ENVIRONMENT_NAME}-user-pool-client`,
       userPoolIdentityName: `${ENVIRONMENT_NAME}-user-pool-identity`,
+      userPoolDomainName: `${ENVIRONMENT_NAME}-user-pool-domain`,
 
       userPoolIdentityProviderGoogleName: `${ENVIRONMENT_NAME}-user-pool-identity-google`,
       userPoolIdentityProviderGoogleRoleName: `${ENVIRONMENT_NAME}-user-pool-identity-google-role`,

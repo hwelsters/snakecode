@@ -8,7 +8,7 @@
     "lint": "eslint . --fix",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk -O ../snakecode-webapp/exports/cdk-exports-dev.json"
+    "cdk": "cdk"
   },
   "devDependencies": {
     "@snakecode/tsconfig": "1.0.0",

@@ -53,19 +53,24 @@ export class AmplifyStack extends Stack {
         value: authStack.region
       })
 
-    new CfnOutput(this, Constants.AmplifyConstants.COGNITO_IDENTITY_POOL_ID, {
-      exportName: Constants.AmplifyConstants.COGNITO_IDENTITY_POOL_ID.replaceAll('_', '-'),
-      value: authStack.cognitoIdentityPoolId
+    new CfnOutput(this, Constants.AmplifyConstants.IDENTITY_POOL_ID, {
+      exportName: Constants.AmplifyConstants.IDENTITY_POOL_ID.replaceAll('_', '-'),
+      value: authStack.identityPoolId
     })
 
     new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_ID, {
       exportName: Constants.AmplifyConstants.USER_POOLS_ID.replaceAll('_', '-'),
-      value: authStack.cognitoUserPoolId
+      value: authStack.userPoolId
     })
 
     new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_WEB_CLIENT_ID, {
       exportName: Constants.AmplifyConstants.USER_POOLS_WEB_CLIENT_ID.replaceAll('_', '-'),
-      value: authStack.cognitoUserPoolClientId
+      value: authStack.userPoolClientId
+    })
+
+    new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_DOMAIN_URL, {
+      exportName: Constants.AmplifyConstants.USER_POOLS_DOMAIN_URL.replaceAll('_', '-'),
+      value: authStack.userPoolDomainUrl
     })
   }
 }

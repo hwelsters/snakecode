@@ -13,10 +13,13 @@ export default function Login() {
       <span className="mb-12 font-bold tracking-widest text-st">
         nice to meet you <text className="text-pc">again</text>
       </span>
-      <span className="mb-6 flex w-full max-w-sm flex-col justify-between space-y-4">
-        <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })} />
-        <OAuthSignInButton logo={facebookLogo} text="Facebook" color="bg-[#4867aa] text-white" />
-        <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" />
+
+      <span className="flex w-full max-w-sm flex-col">
+        <span className="mb-8 flex w-full flex-col space-y-4">
+          <OAuthSignInButton logo={googleLogo} text="Google" color="bg-pc text-white" onClick={() => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })} />
+          <OAuthSignInButton logo={facebookLogo} text="Facebook" color="bg-[#4867aa] text-white" />
+          <OAuthSignInButton logo={appleLogo} text="Apple" color="bg-black text-white" />
+        </span>
       </span>
     </main>
   )

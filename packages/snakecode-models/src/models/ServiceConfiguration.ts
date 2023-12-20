@@ -10,6 +10,7 @@ export interface AmplifyAuthConfiguration {
   readonly userPoolName: string
   readonly userPoolClientName: string
   readonly userPoolIdentityName: string
+  readonly userPoolDomainName: string
 
   // Variables related to Google Identity Provider Login
   readonly userPoolIdentityProviderGoogleName: string

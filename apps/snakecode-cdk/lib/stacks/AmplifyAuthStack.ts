@@ -6,6 +6,7 @@ import type { Construct } from 'constructs'
 
 import type { AmplifyAuthConfiguration } from '@snakecode/models'
 import { APP_NAME, BASE_URL } from '@snakecode/models'
+import { ENVIRONMENT_NAME } from '@snakecode/models'
 
 import Env from '../constants/Env'
 
@@ -15,11 +16,12 @@ export class AmplifyAuthStack extends NestedStack {
 
   // Outputs that will be used by other stacks
   readonly region: string
-  readonly cognitoIdentityPoolId: string
-  readonly cognitoUserPoolId: string
-  readonly cognitoUserPoolClientId: string
+  readonly identityPoolId: string
+  readonly userPoolId: string
+  readonly userPoolClientId: string
+  readonly userPoolDomainUrl: string
 
-  constructor(scope: Construct, id: string, props: StackProps & { amplifyAuthConfiguration: AmplifyAuthConfiguration, stage: string }) {
+  constructor(scope: Construct, id: string, props: StackProps & { amplifyAuthConfiguration: AmplifyAuthConfiguration; stage: string }) {
     super(scope, id, props)
 
     // Create a User Pool with email and password login
@@ -59,6 +61,13 @@ export class AmplifyAuthStack extends NestedStack {
       },
       signInCaseSensitive: false,
       accountRecovery: AccountRecovery.EMAIL_ONLY
+    })
+
+    const uniquePrefix = `${ENVIRONMENT_NAME}-${props.stage}`.toLowerCase()
+    userPool.addDomain(`${props.amplifyAuthConfiguration.userPoolDomainName}-${props.stage}-${props.env!.region}`, {
+      cognitoDomain: {
+        domainPrefix: uniquePrefix
+      }
     })
 
     // This allows users to sign in via Google on the frontend
@@ -134,8 +143,9 @@ export class AmplifyAuthStack extends NestedStack {
     })
 
     this.region = props.env!.region!
-    this.cognitoIdentityPoolId = cognitoIdentityPool.ref
-    this.cognitoUserPoolId = userPool.userPoolId
-    this.cognitoUserPoolClientId = cognitoUserPoolClient.userPoolClientId
+    this.identityPoolId = cognitoIdentityPool.ref
+    this.userPoolId = userPool.userPoolId
+    this.userPoolClientId = cognitoUserPoolClient.userPoolClientId
+    this.userPoolDomainUrl = `${uniquePrefix}.auth.${props.env!.region!}.amazoncognito.com`
   }
 }
