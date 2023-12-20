@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import routes from '@/constants/routes'
+import routes from "@/constants/routes";
 
 export default function Navbar() {
   return (
@@ -19,5 +19,5 @@ export default function Navbar() {
         </Link>
       </span>
     </nav>
-  )
+  );
 }

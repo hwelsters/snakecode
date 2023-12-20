@@ -1,3 +1,3 @@
 declare module globalThis {
-  function loadPyodide(): any
+  function loadPyodide(): any;
 }

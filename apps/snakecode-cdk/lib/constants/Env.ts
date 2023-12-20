@@ -1,7 +1,7 @@
-import dotenv from 'dotenv'
-import { cleanEnv, str } from 'envalid'
+import dotenv from "dotenv";
+import { cleanEnv, str } from "envalid";
 
-dotenv.config()
+dotenv.config();
 
 // Log an error message and exit (in Node) if any required env variables are missing
 const Env = cleanEnv(process.env, {
@@ -16,6 +16,6 @@ const Env = cleanEnv(process.env, {
   APPLE_KEY_ID: str(),
   APPLE_PRIVATE_KEY: str(),
   APPLE_TEAM_ID: str(),
-})
+});
 
-export default Env
+export default Env;

@@ -1,27 +1,30 @@
-import type { App, Environment } from 'aws-cdk-lib'
+import type { App, Environment } from "aws-cdk-lib";
 
-import type { StageConfiguration } from '@snakecode/models'
+import type { StageConfiguration } from "@snakecode/models";
 
-import { AmplifyStack } from '../stacks/AmplifyStack'
+import { AmplifyStack } from "../stacks/AmplifyStack";
 
 export class StageUtils {
-  private readonly configuration: StageConfiguration
-  private readonly app: App
-  private readonly env: Environment
-  private readonly stage: string
+  private readonly configuration: StageConfiguration;
+
+  private readonly app: App;
+
+  private readonly env: Environment;
+
+  private readonly stage: string;
 
   constructor(app: App, configuration: StageConfiguration, env: Environment, stage: string) {
-    this.app = app
-    this.configuration = configuration
-    this.env = env
-    this.stage = stage
+    this.app = app;
+    this.configuration = configuration;
+    this.env = env;
+    this.stage = stage;
   }
 
   setupStages = () => {
     new AmplifyStack(this.app, this.configuration.amplifyStackConfiguration.stackName, {
       env: this.env,
       stage: this.stage,
-      amplifyStackConfiguration: this.configuration.amplifyStackConfiguration
-    })
-  }
+      amplifyStackConfiguration: this.configuration.amplifyStackConfiguration,
+    });
+  };
 }

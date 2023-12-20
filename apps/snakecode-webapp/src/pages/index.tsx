@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import Banner from '@/components/common/banner'
-import Navbar from '@/components/common/navbar'
-import routes from '@/constants/routes'
+import Banner from "@/components/common/banner";
+import Navbar from "@/components/common/navbar";
+import routes from "@/constants/routes";
 
 export default function Home() {
   return (
@@ -24,5 +24,5 @@ export default function Home() {
         </span>
       </main>
     </div>
-  )
+  );
 }

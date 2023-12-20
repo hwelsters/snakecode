@@ -1,5 +1,5 @@
-import type { AmplifyConfiguration } from './ServiceConfiguration'
+import type { AmplifyConfiguration } from "./ServiceConfiguration";
 
 export interface StageConfiguration {
-  readonly amplifyStackConfiguration: AmplifyConfiguration
+  readonly amplifyStackConfiguration: AmplifyConfiguration;
 }

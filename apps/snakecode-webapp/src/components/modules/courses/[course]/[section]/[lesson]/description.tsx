@@ -1,6 +1,6 @@
 interface DescriptionProps {
-  text?: string
-  completePage?: any
+  text?: string;
+  completePage?: any;
 }
 
 export default function Description({ text, completePage }: DescriptionProps) {
@@ -19,5 +19,5 @@ export default function Description({ text, completePage }: DescriptionProps) {
         </button>
       </div>
     </div>
-  )
+  );
 }

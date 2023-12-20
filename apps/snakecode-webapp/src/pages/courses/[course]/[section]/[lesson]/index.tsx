@@ -1,57 +1,57 @@
-import type { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import type { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-import CloseIcon from '@mui/icons-material/Close'
-import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
-import Coding from '@/components/modules/courses/[course]/[section]/[lesson]/coding'
-import Description from '@/components/modules/courses/[course]/[section]/[lesson]/description'
-import Quiz from '@/components/modules/courses/[course]/[section]/[lesson]/quiz'
-import clampNumber from '@/utils/clampNumber'
-import { getAllStaticPaths, getLesson } from '@/utils/content'
-import removeLastPathSegment from '@/utils/removeLastPathSegment'
+import Coding from "@/components/modules/courses/[course]/[section]/[lesson]/coding";
+import Description from "@/components/modules/courses/[course]/[section]/[lesson]/description";
+import Quiz from "@/components/modules/courses/[course]/[section]/[lesson]/quiz";
+import clampNumber from "@/utils/clampNumber";
+import { getAllStaticPaths, getLesson } from "@/utils/content";
+import removeLastPathSegment from "@/utils/removeLastPathSegment";
 
 // TODO: Define a type for lesson instead of using any.
 export default function Lesson({ lesson }: { lesson: Array<any> }) {
-  const router = useRouter()
+  const router = useRouter();
 
   // The number of pages in the lesson that the user has successfully completed.
-  const [completedPagesCount, setCompletedPagesCount] = useState<number>(0)
+  const [completedPagesCount, setCompletedPagesCount] = useState<number>(0);
 
   // The page in the lesson which is currently visible on screen.
-  const [visiblePageIndex, setVisiblePageIndex] = useState<number>(0)
+  const [visiblePageIndex, setVisiblePageIndex] = useState<number>(0);
 
   const completePage = () => {
-    const newCompletedPagesCount = clampNumber(visiblePageIndex + 1, completedPagesCount, lesson.length)
-    setCompletedPagesCount(newCompletedPagesCount)
-    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, newCompletedPagesCount))
-  }
+    const newCompletedPagesCount = clampNumber(visiblePageIndex + 1, completedPagesCount, lesson.length);
+    setCompletedPagesCount(newCompletedPagesCount);
+    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, newCompletedPagesCount));
+  };
 
   const nextPage = () => {
-    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, completedPagesCount))
-  }
+    setVisiblePageIndex(clampNumber(visiblePageIndex + 1, 0, completedPagesCount));
+  };
 
   const previousPage = () => {
-    setVisiblePageIndex(clampNumber(visiblePageIndex - 1, 0, completedPagesCount))
-  }
+    setVisiblePageIndex(clampNumber(visiblePageIndex - 1, 0, completedPagesCount));
+  };
 
   const parseLesson = () => {
-    if (visiblePageIndex === lesson.length) return <div />
+    if (visiblePageIndex === lesson.length) return <div />;
 
-    const currentPage = lesson[visiblePageIndex]
+    const currentPage = lesson[visiblePageIndex];
     switch (currentPage.type) {
-      case 'description':
-        return <Description text={currentPage.main} completePage={completePage} />
-      case 'quiz':
-        return <Quiz text={currentPage.main} options={currentPage.options} correct={currentPage.correct} completePage={completePage} />
-      case 'coding':
-        return <Coding text={currentPage.main} template={currentPage.template} answer={currentPage.answer} completePage={completePage} />
+      case "description":
+        return <Description text={currentPage.main} completePage={completePage} />;
+      case "quiz":
+        return <Quiz text={currentPage.main} options={currentPage.options} correct={currentPage.correct} completePage={completePage} />;
+      case "coding":
+        return <Coding text={currentPage.main} template={currentPage.template} answer={currentPage.answer} completePage={completePage} />;
       default:
-        throw new Error(`${String(currentPage.type)} is an invalid type!`)
+        throw new Error(`${String(currentPage.type)} is an invalid type!`);
     }
-  }
+  };
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-bg">
@@ -87,23 +87,23 @@ export default function Lesson({ lesson }: { lesson: Array<any> }) {
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: getAllStaticPaths(),
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
   // Read the lesson from the markdown file based on the app's current context
-  const lesson = getLesson(context.params.course, context.params.section, context.params.lesson).data.content
+  const lesson = getLesson(context.params.course, context.params.section, context.params.lesson).data.content;
 
   return {
     props: {
-      lesson
-    }
-  }
-}
+      lesson,
+    },
+  };
+};

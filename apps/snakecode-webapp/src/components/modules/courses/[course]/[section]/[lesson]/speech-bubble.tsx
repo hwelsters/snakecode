@@ -1,7 +1,7 @@
 interface SpeechBubbleProps {
-  icon?: any
-  title?: string
-  description?: string
+  icon?: any;
+  title?: string;
+  description?: string;
 }
 
 export default function SpeechBubble({ icon, title, description }: SpeechBubbleProps) {
@@ -16,5 +16,5 @@ export default function SpeechBubble({ icon, title, description }: SpeechBubbleP
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import type { StageConfiguration } from '../models/StageConfiguration'
+import type { StageConfiguration } from "../models/StageConfiguration";
 
 // The domain where the application will be hosted.
 // It will be left blank if a domain doesn't exist.
-export const BASE_URL: string = 'http://localhost:3000'
+export const BASE_URL: string = "http://localhost:3000";
 
 // The name of the application
-export const APP_NAME: string = 'Snakecode'
-export const ENVIRONMENT_NAME: string = APP_NAME.toLowerCase()
+export const APP_NAME: string = "Snakecode";
+export const ENVIRONMENT_NAME: string = APP_NAME.toLowerCase();
 
 export const INFRA_CONFIG: StageConfiguration = {
   amplifyStackConfiguration: {
@@ -29,7 +29,7 @@ export const INFRA_CONFIG: StageConfiguration = {
       userPoolIdentityProviderAppleName: `${ENVIRONMENT_NAME}-user-pool-identity-apple`,
 
       unauthenticatedRoleName: `${ENVIRONMENT_NAME}-unauthenticated-role`,
-      authenticatedRoleName: `${ENVIRONMENT_NAME}-authenticated-role`
-    }
-  }
-}
+      authenticatedRoleName: `${ENVIRONMENT_NAME}-authenticated-role`,
+    },
+  },
+};
