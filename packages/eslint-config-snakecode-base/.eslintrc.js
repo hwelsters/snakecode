@@ -1,6 +1,5 @@
 module.exports = {
-  extends: ["plugin:prettier/recommended"],
-  parser: "@typescript-eslint/parser",
+  extends: ["airbnb-base", "next", "plugin:prettier/recommended"],
   rules: {},
   overrides: [
     {
@@ -8,52 +7,57 @@ module.exports = {
       plugins: [
         "@typescript-eslint",
         "unused-imports",
+        "tailwindcss",
         "simple-import-sort",
-        "tsdoc",
       ],
-      extends: ["plugin:prettier/recommended"],
+      extends: [
+        "plugin:tailwindcss/recommended",
+        "airbnb",
+        "airbnb-typescript",
+        "next",
+        "plugin:prettier/recommended",
+      ],
+      parserOptions: {
+        project: "./tsconfig.json",
+      },
       rules: {
-        "prettier/prettier": [
-          "error",
-          {
-            bracketSpacing: true,
-            endOfLine: "auto",
-            printWidth: 240,
-            singleQuote: true,
-            semi: false,
-            trailingComma: "none",
-          },
-        ],
+        "@next/next/no-img-element": "off",
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/no-unused-vars": "off",
+        "import/prefer-default-export": "off",
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
           "LabeledStatement",
           "WithStatement",
         ],
-        "import/prefer-default-export": "off",
-        "simple-import-sort/exports": "error",
+        "no-new": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            printWidth: 240,
+          },
+        ],
+        "react/function-component-definition": "off",
+        "react/destructuring-assignment": "off",
+        "react/require-default-props": "off",
+        "react/jsx-props-no-spreading": "off",
         "simple-import-sort/imports": [
           "error",
           {
             groups: [
               ["^node:"],
+              ["^next", "^react"],
               ["^@?\\w"],
-              ["^@snakecode"],
-              ["^@", "^@public"],
+              ["^@snakecode", "^@", "^@public", "^@root"],
               ["^\\."],
             ],
           },
         ],
-        "@typescript-eslint/no-unused-vars": "off",
-        "unused-imports/no-unused-imports": "error",
-        "unused-imports/no-unused-vars": [
-          "error",
-          {
-            argsIgnorePattern: "^_",
-          },
-        ],
+        "tailwindcss/classnames-order": "warn",
+        "tailwindcss/no-custom-classname": "warn",
+        "tailwindcss/no-contradicting-classname": "error",
       },
     },
   ],
