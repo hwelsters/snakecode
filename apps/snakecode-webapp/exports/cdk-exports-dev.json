@@ -1,0 +1,11 @@
+{
+  "snakecode-amplify-stack": {
+    "amplifyid": "d3thed3kk59i2n",
+    "userpoolsdomainurl": "snakecode-dev.auth.us-west-2.amazoncognito.com",
+    "identitypoolid": "us-west-2:db458b37-0e50-4284-beb1-75c1e9c72890",
+    "userpoolswebclientid": "3j97ggu8ccurvnnc4tkc3aua13",
+    "userpoolsid": "us-west-2_93GYjaMY6",
+    "region": "us-west-2",
+    "cognitoregion": "us-west-2"
+  }
+}

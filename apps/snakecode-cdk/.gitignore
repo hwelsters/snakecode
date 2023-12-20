@@ -8,3 +8,5 @@ cdk.out
 
 !jest.config.js
 !.eslintrc.js
+
+.env

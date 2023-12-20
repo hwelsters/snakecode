@@ -19,14 +19,18 @@ export class AmplifyStack extends Stack {
     super(scope, id, props)
 
     // The website uses NextJS SSG which will be deployed by uploading the .zip file to Amplify.
-    const amplifyApp = new aws_amplify.CfnApp(this, `${props.amplifyStackConfiguration.amplifyAppName}`, {
+    const amplifyApp = new aws_amplify.CfnApp(this, `${props.amplifyStackConfiguration.amplifyAppName}-${props.stage}-${props.env!.region}`, {
       name: `${props.amplifyStackConfiguration.amplifyAppName}`,
       iamServiceRole: `${props.amplifyStackConfiguration.amplifyServiceRoleName}`,
       description: `The ${APP_NAME} AWS Amplify Application`
     })
 
-    const authStack = new AmplifyAuthStack(this, `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`, {
+    // Create the nested stack which will contain all the resources related to authentication.
+    const authStack = new AmplifyAuthStack(this, `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}-${props.stage}-${props.env!.region}`, {
+      stackName: `${props.amplifyStackConfiguration.amplifyAuthConfiguration.stackName}`,
+      description: `This stack will contain all the ${APP_NAME} Auth related resources`,
       amplifyAuthConfiguration: props.amplifyStackConfiguration.amplifyAuthConfiguration,
+      stage: props.stage,
       env: props.env
     })
 
@@ -49,19 +53,24 @@ export class AmplifyStack extends Stack {
         value: authStack.region
       })
 
-    new CfnOutput(this, Constants.AmplifyConstants.COGNITO_IDENTITY_POOL_ID, {
-      exportName: Constants.AmplifyConstants.COGNITO_IDENTITY_POOL_ID.replaceAll('_', '-'),
-      value: authStack.cognitoIdentityPoolId
+    new CfnOutput(this, Constants.AmplifyConstants.IDENTITY_POOL_ID, {
+      exportName: Constants.AmplifyConstants.IDENTITY_POOL_ID.replaceAll('_', '-'),
+      value: authStack.identityPoolId
     })
 
     new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_ID, {
       exportName: Constants.AmplifyConstants.USER_POOLS_ID.replaceAll('_', '-'),
-      value: authStack.cognitoUserPoolId
+      value: authStack.userPoolId
     })
 
     new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_WEB_CLIENT_ID, {
       exportName: Constants.AmplifyConstants.USER_POOLS_WEB_CLIENT_ID.replaceAll('_', '-'),
-      value: authStack.cognitoUserPoolClientId
+      value: authStack.userPoolClientId
+    })
+
+    new CfnOutput(this, Constants.AmplifyConstants.USER_POOLS_DOMAIN_URL, {
+      exportName: Constants.AmplifyConstants.USER_POOLS_DOMAIN_URL.replaceAll('_', '-'),
+      value: authStack.userPoolDomainUrl
     })
   }
 }

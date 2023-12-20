@@ -1,26 +1,32 @@
 import type { StackProps } from 'aws-cdk-lib'
 import { Duration, NestedStack } from 'aws-cdk-lib'
-import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, UserPool, UserPoolClient, VerificationEmailStyle } from 'aws-cdk-lib/aws-cognito'
+import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, ProviderAttribute, UserPool, UserPoolClient, UserPoolClientIdentityProvider, UserPoolIdentityProviderApple, UserPoolIdentityProviderFacebook, UserPoolIdentityProviderGoogle, VerificationEmailStyle } from 'aws-cdk-lib/aws-cognito'
 import { FederatedPrincipal, Role } from 'aws-cdk-lib/aws-iam'
 import type { Construct } from 'constructs'
 
 import type { AmplifyAuthConfiguration } from '@snakecode/models'
-import { APP_NAME } from '@snakecode/models'
+import { APP_NAME, BASE_URL } from '@snakecode/models'
+import { ENVIRONMENT_NAME } from '@snakecode/models'
+
+import Env from '../constants/Env'
 
 export class AmplifyAuthStack extends NestedStack {
   readonly authenticatedRole: Role
   readonly unauthenticatedRole: Role
 
+  // Outputs that will be used by other stacks
   readonly region: string
-  readonly cognitoIdentityPoolId: string
-  readonly cognitoUserPoolId: string
-  readonly cognitoUserPoolClientId: string
+  readonly identityPoolId: string
+  readonly userPoolId: string
+  readonly userPoolClientId: string
+  readonly userPoolDomainUrl: string
 
-  constructor(scope: Construct, id: string, props: StackProps & { amplifyAuthConfiguration: AmplifyAuthConfiguration }) {
+  constructor(scope: Construct, id: string, props: StackProps & { amplifyAuthConfiguration: AmplifyAuthConfiguration; stage: string }) {
     super(scope, id, props)
 
-    const cognitoUserPool = new UserPool(this, `${props.amplifyAuthConfiguration.userPoolName}`, {
-      userPoolName: `${props.amplifyAuthConfiguration.userPoolName}`,
+    // Create a User Pool with email and password login
+    const userPool = new UserPool(this, `${props.amplifyAuthConfiguration.userPoolName}-${props.stage}-${props.env!.region}`, {
+      userPoolName: `${props.amplifyAuthConfiguration.userPoolName}-${props.stage}-${props.env!.region}`,
       selfSignUpEnabled: true,
       userVerification: {
         emailSubject: `Verify your email for ${APP_NAME}`,
@@ -57,17 +63,65 @@ export class AmplifyAuthStack extends NestedStack {
       accountRecovery: AccountRecovery.EMAIL_ONLY
     })
 
-    // This user pool client will
-    const cognitoUserPoolClient = new UserPoolClient(this, `${props.amplifyAuthConfiguration.userPoolClientName}`, {
-      userPool: cognitoUserPool
+    const uniquePrefix = `${ENVIRONMENT_NAME}-${props.stage}`.toLowerCase()
+    userPool.addDomain(`${props.amplifyAuthConfiguration.userPoolDomainName}-${props.stage}-${props.env!.region}`, {
+      cognitoDomain: {
+        domainPrefix: uniquePrefix
+      }
     })
 
-    const cognitoIdentityPool = new CfnIdentityPool(this, `${props.amplifyAuthConfiguration.userPoolIdentityName}`, {
+    /* ======================================
+    * Federated Logins
+    ====================================== */
+    new UserPoolIdentityProviderGoogle(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderGoogleName}-${props.stage}-${props.env!.region}`, {
+      userPool: userPool,
+      clientId: Env.GOOGLE_CLIENT_ID,
+      clientSecret: Env.GOOGLE_CLIENT_SECRET,
+      scopes: ['email'],
+      attributeMapping: {
+        email: ProviderAttribute.GOOGLE_EMAIL
+      }
+    })
+
+    new UserPoolIdentityProviderFacebook(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderFacebookName}-${props.stage}-${props.env!.region}`, {
+      userPool: userPool,
+      clientId: Env.FACEBOOK_CLIENT_ID,
+      clientSecret: Env.FACEBOOK_CLIENT_SECRET,
+      scopes: ['email'],
+      attributeMapping: {
+        email: ProviderAttribute.FACEBOOK_EMAIL
+      }
+    })
+
+    new UserPoolIdentityProviderApple(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderAppleName}-${props.stage}-${props.env!.region}`, {
+      userPool: userPool,
+      clientId: Env.APPLE_CLIENT_ID,
+      keyId: Env.APPLE_KEY_ID,
+      privateKey: Env.APPLE_PRIVATE_KEY,
+      teamId: Env.APPLE_TEAM_ID,
+      scopes: ['email'],
+      attributeMapping: {
+        email: ProviderAttribute.APPLE_EMAIL
+      }
+    })
+
+    // This user pool client will be used by the Amplify frontend
+    const cognitoUserPoolClient = new UserPoolClient(this, `${props.amplifyAuthConfiguration.userPoolClientName}-${props.stage}-${props.env!.region}`, {
+      userPool: userPool,
+      generateSecret: true,
+      supportedIdentityProviders: [UserPoolClientIdentityProvider.GOOGLE, UserPoolClientIdentityProvider.COGNITO],
+      oAuth: {
+        callbackUrls: [`${BASE_URL}`]
+      }
+    })
+
+    const cognitoIdentityPool = new CfnIdentityPool(this, `${props.amplifyAuthConfiguration.userPoolIdentityName}-${props.stage}-${props.env!.region}`, {
       identityPoolName: `${props.amplifyAuthConfiguration.userPoolIdentityName}`,
       allowUnauthenticatedIdentities: false
     })
 
-    this.authenticatedRole = new Role(this, `${props.amplifyAuthConfiguration.authenticatedRoleName}`, {
+    // Creates the authenticated role which will be used with user pool identities
+    this.authenticatedRole = new Role(this, `${props.amplifyAuthConfiguration.authenticatedRoleName}-${props.stage}-${props.env!.region}`, {
       roleName: `${props.amplifyAuthConfiguration.authenticatedRoleName}`,
       description: 'IAM Role to be used as an Unauthenticated role for the Cognito user pool identities, used by Amplify',
       assumedBy: new FederatedPrincipal(
@@ -85,7 +139,8 @@ export class AmplifyAuthStack extends NestedStack {
       maxSessionDuration: Duration.hours(1)
     })
 
-    this.unauthenticatedRole = new Role(this, `${props.amplifyAuthConfiguration.unauthenticatedRoleName}`, {
+    // Creates the unauthenticated role which will be used with user pool identities
+    this.unauthenticatedRole = new Role(this, `${props.amplifyAuthConfiguration.unauthenticatedRoleName}-${props.stage}-${props.env!.region}`, {
       roleName: `${props.amplifyAuthConfiguration.unauthenticatedRoleName}`,
       description: 'IAM Role to be used as an Authenticated role for the Cognito user pool identities, used by Amplify',
       assumedBy: new FederatedPrincipal(
@@ -103,7 +158,7 @@ export class AmplifyAuthStack extends NestedStack {
       maxSessionDuration: Duration.hours(1)
     })
 
-    new CfnIdentityPoolRoleAttachment(this, `${props.amplifyAuthConfiguration.authenticatedRoleName}-attachment`, {
+    new CfnIdentityPoolRoleAttachment(this, `${props.amplifyAuthConfiguration.authenticatedRoleName}-attachment-${props.stage}-${props.env!.region}`, {
       identityPoolId: cognitoIdentityPool.ref,
       roles: {
         unauthenticated: this.unauthenticatedRole.roleArn,
@@ -111,10 +166,10 @@ export class AmplifyAuthStack extends NestedStack {
       }
     })
 
-    // Outputs that will be used by other stacks
     this.region = props.env!.region!
-    this.cognitoIdentityPoolId = cognitoIdentityPool.ref
-    this.cognitoUserPoolId = cognitoUserPool.userPoolId
-    this.cognitoUserPoolClientId = cognitoUserPoolClient.userPoolClientId
+    this.identityPoolId = cognitoIdentityPool.ref
+    this.userPoolId = userPool.userPoolId
+    this.userPoolClientId = cognitoUserPoolClient.userPoolClientId
+    this.userPoolDomainUrl = `${uniquePrefix}.auth.${props.env!.region!}.amazoncognito.com`
   }
 }

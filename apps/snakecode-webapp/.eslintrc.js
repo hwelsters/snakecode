@@ -49,7 +49,7 @@ module.exports = {
               ["^node:"],
               ["^next", "^react"],
               ["^@?\\w"],
-              ["^@", "^@public", "^@root"],
+              ["^@snakecode", "^@", "^@public", "^@root"],
               ["^\\."],
             ],
           },
