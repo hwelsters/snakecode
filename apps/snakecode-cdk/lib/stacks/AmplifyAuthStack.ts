@@ -1,6 +1,6 @@
 import type { StackProps } from 'aws-cdk-lib'
 import { Duration, NestedStack } from 'aws-cdk-lib'
-import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, ProviderAttribute, UserPool, UserPoolClient, UserPoolClientIdentityProvider, UserPoolIdentityProviderGoogle, VerificationEmailStyle } from 'aws-cdk-lib/aws-cognito'
+import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, ProviderAttribute, UserPool, UserPoolClient, UserPoolClientIdentityProvider, UserPoolIdentityProviderFacebook, UserPoolIdentityProviderGoogle, VerificationEmailStyle } from 'aws-cdk-lib/aws-cognito'
 import { FederatedPrincipal, Role } from 'aws-cdk-lib/aws-iam'
 import type { Construct } from 'constructs'
 
@@ -70,7 +70,9 @@ export class AmplifyAuthStack extends NestedStack {
       }
     })
 
-    // This allows users to sign in via Google on the frontend
+    /* ======================================
+    * Federated Logins
+    ====================================== */
     new UserPoolIdentityProviderGoogle(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderGoogleName}-${props.stage}-${props.env!.region}`, {
       userPool: userPool,
       clientId: Env.GOOGLE_CLIENT_ID,
@@ -78,6 +80,16 @@ export class AmplifyAuthStack extends NestedStack {
       scopes: ['email'],
       attributeMapping: {
         email: ProviderAttribute.GOOGLE_EMAIL
+      }
+    })
+
+    new UserPoolIdentityProviderFacebook(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderFacebookName}-${props.stage}-${props.env!.region}`, {
+      userPool: userPool,
+      clientId: Env.FACEBOOK_CLIENT_ID,
+      clientSecret: Env.FACEBOOK_CLIENT_SECRET,
+      scopes: ['email'],
+      attributeMapping: {
+        email: ProviderAttribute.FACEBOOK_EMAIL
       }
     })
 
