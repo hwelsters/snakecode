@@ -10,12 +10,6 @@ const Env = cleanEnv(process.env, {
 
   FACEBOOK_CLIENT_ID: str(),
   FACEBOOK_CLIENT_SECRET: str(),
-
-  APPLE_CLIENT_ID: str(),
-  APPLE_CLIENT_SECRET: str(),
-  APPLE_KEY_ID: str(),
-  APPLE_PRIVATE_KEY: str(),
-  APPLE_TEAM_ID: str(),
 });
 
 export default Env;

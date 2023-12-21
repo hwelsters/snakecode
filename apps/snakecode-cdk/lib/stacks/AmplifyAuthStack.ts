@@ -8,7 +8,6 @@ import {
   UserPool,
   UserPoolClient,
   UserPoolClientIdentityProvider,
-  UserPoolIdentityProviderApple,
   UserPoolIdentityProviderFacebook,
   UserPoolIdentityProviderGoogle,
   VerificationEmailStyle,
@@ -106,18 +105,6 @@ export class AmplifyAuthStack extends NestedStack {
       scopes: ["email"],
       attributeMapping: {
         email: ProviderAttribute.FACEBOOK_EMAIL,
-      },
-    });
-
-    new UserPoolIdentityProviderApple(this, `${props.amplifyAuthConfiguration.userPoolIdentityProviderAppleName}-${props.stage}-${props.env!.region}`, {
-      userPool,
-      clientId: Env.APPLE_CLIENT_ID,
-      keyId: Env.APPLE_KEY_ID,
-      privateKey: Env.APPLE_PRIVATE_KEY,
-      teamId: Env.APPLE_TEAM_ID,
-      scopes: ["email"],
-      attributeMapping: {
-        email: ProviderAttribute.APPLE_EMAIL,
       },
     });
 
