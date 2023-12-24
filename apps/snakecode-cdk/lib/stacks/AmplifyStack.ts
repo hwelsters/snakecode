@@ -4,7 +4,6 @@ import type { Construct } from "constructs";
 
 import type { AmplifyConfiguration } from "@snakecode/models";
 import { APP_NAME, Constants } from "@snakecode/models";
-
 import { AmplifyAuthStack } from "./AmplifyAuthStack";
 
 export class AmplifyStack extends Stack {

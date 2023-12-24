@@ -1,11 +1,14 @@
 {
   "snakecode-amplify-stack": {
-    "amplifyid": "d3thed3kk59i2n",
+    "amplifyid": "dme6lbx52jvft",
     "userpoolsdomainurl": "snakecode-dev.auth.us-west-2.amazoncognito.com",
-    "identitypoolid": "us-west-2:db458b37-0e50-4284-beb1-75c1e9c72890",
-    "userpoolswebclientid": "3j97ggu8ccurvnnc4tkc3aua13",
-    "userpoolsid": "us-west-2_93GYjaMY6",
+    "identitypoolid": "us-west-2:24f4a730-f2d4-4533-a30b-273197201ea4",
+    "userpoolswebclientid": "4qtj9vn0fn6ovj0ohi40ojaco4",
+    "userpoolsid": "us-west-2_qKsYab2W1",
     "region": "us-west-2",
     "cognitoregion": "us-west-2"
+  },
+  "snakecode-nextjs-ssg-hosting-stack": {
+    "mainwebsitedomainname": "d14sb61hcjf629.cloudfront.net"
   }
 }

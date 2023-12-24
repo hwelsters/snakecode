@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
-
 import { python } from "@codemirror/lang-python";
 import CodeMirror from "@uiw/react-codemirror";
+import { useContext, useState } from "react";
 
 import { PyodideContext } from "@/providers/pyodide-provider";
-
 import SpeechBubble from "./speech-bubble";
 import theme from "./theme";
 

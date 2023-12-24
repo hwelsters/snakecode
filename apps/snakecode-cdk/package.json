@@ -7,6 +7,7 @@
     "build": "tsc",
     "lint": "eslint . --fix",
     "lint:staged": "lint-staged",
+    "clean": "rm -rf node_modules/",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
@@ -24,6 +25,7 @@
     "typescript": "~5.1.6"
   },
   "dependencies": {
+    "@aws-cdk/aws-amplify": "^1.204.0",
     "@snakecode/models": "1.0.0",
     "aws-cdk-lib": "2.90.0",
     "constructs": "^10.0.0",

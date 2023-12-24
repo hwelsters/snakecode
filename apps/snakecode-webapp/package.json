@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "clean": "rm -rf .next/ node_modules/ out/",
     "lint": "eslint . --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

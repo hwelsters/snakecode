@@ -26,6 +26,7 @@ module.exports = {
         "@typescript-eslint/consistent-type-imports": "error",
         "@typescript-eslint/no-unused-vars": "off",
         "import/prefer-default-export": "off",
+        "import/extensions": "off",
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
@@ -48,10 +49,8 @@ module.exports = {
           {
             groups: [
               ["^node:"],
-              ["^next", "^react"],
               ["^@?\\w"],
-              ["^@snakecode", "^@", "^@public", "^@root"],
-              ["^\\."],
+              ["^@snakecode", "^@", "^@public", "^@root", "^\\."],
             ],
           },
         ],

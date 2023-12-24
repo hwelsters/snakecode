@@ -32,4 +32,12 @@ export const INFRA_CONFIG: StageConfiguration = {
       authenticatedRoleName: `${ENVIRONMENT_NAME}-authenticated-role`,
     },
   },
+
+  staticWebsiteHostingStackConfiguration: {
+    stackName: `${ENVIRONMENT_NAME}-nextjs-ssg-hosting-stack`,
+    bucketName: `${ENVIRONMENT_NAME}-nextjs-ssg-hosting-bucket`,
+    bucketDeploymentName: `${ENVIRONMENT_NAME}-nextjs-ssg-hosting-bucket-deployment`,
+    distributionName: `${ENVIRONMENT_NAME}-nextjs-ssg-hosting-distribution`,
+    originAccessIdentityName: `${ENVIRONMENT_NAME}-nextjs-ssg-hosting-origin-access-identity`,
+  },
 };

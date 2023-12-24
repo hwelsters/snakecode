@@ -23,3 +23,11 @@ export interface AmplifyAuthConfiguration {
   readonly authenticatedRoleName: string;
   readonly unauthenticatedRoleName: string;
 }
+
+export interface StaticWebsiteHostingStackConfiguration {
+  readonly stackName: string;
+  readonly bucketName: string;
+  readonly bucketDeploymentName: string;
+  readonly distributionName: string;
+  readonly originAccessIdentityName: string;
+}
