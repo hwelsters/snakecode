@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
-
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import { useRouter } from "next/router";
 
 import { addPathSegment } from "@/utils/addPathSegment";
 

@@ -17,7 +17,6 @@ import type { Construct } from "constructs";
 
 import type { AmplifyAuthConfiguration } from "@snakecode/models";
 import { APP_NAME, BASE_URL, ENVIRONMENT_NAME } from "@snakecode/models";
-
 import Env from "../constants/Env";
 
 export class AmplifyAuthStack extends NestedStack {

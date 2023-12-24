@@ -17,4 +17,8 @@ export namespace Constants {
     export const USER_POOLS_WEB_CLIENT_ID: string = `user_pools_web_client_id`;
     export const USER_POOLS_DOMAIN_URL: string = `user_pools_domain_url`;
   }
+
+  export namespace StaticWebsiteHostingConstants {
+    export const MAIN_WEBSITE_DOMAIN_NAME: string = "main_website_domain_name";
+  }
 }

@@ -2,7 +2,6 @@ import type { Environment } from "aws-cdk-lib";
 import { App } from "aws-cdk-lib";
 
 import { INFRA_CONFIG } from "@snakecode/models";
-
 import { StageUtils } from "./utils/StageUtils";
 
 const app = new App();

@@ -1,10 +1,9 @@
-import type { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { useState } from "react";
-
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import type { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 import Coding from "@/components/modules/courses/[course]/[section]/[lesson]/coding";
 import Description from "@/components/modules/courses/[course]/[section]/[lesson]/description";
