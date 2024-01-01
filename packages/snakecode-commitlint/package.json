@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf build/ lib/ node_modules/",
+    "clean": "rimraf build/ lib/ node_modules/",
     "lint": "eslint --fix --ext .ts src/"
   },
   "dependencies": {
@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "@snakecode/tsconfig": "1.0.0",
-    "eslint-config-snakecode-base": "1.0.0"
+    "@snakecode/tsconfig": "^1.0.0",
+    "eslint-config-snakecode-base": "^1.0.0"
   },
   "private": true
 }
