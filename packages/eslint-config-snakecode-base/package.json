@@ -4,7 +4,7 @@
   "description": "This sub-package represents the library used to expose Snakecode's eslint configuration.",
   "main": ".eslintrc.js",
   "scripts": {
-    "clean": "rm -rf build/ lib/ node_modules/",
+    "clean": "rimraf build/ lib/ node_modules/",
     "lint": "eslint . --fix"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@
   "description": "This sub-package represents the library used to expose Monorepo's Typescript configuration.",
   "main": "tsconfig.json",
   "scripts": {
-    "clean": "rm -rf build/ dist/ node_modules/"
+    "clean": "rimraf build/ dist/ node_modules/"
   },
   "private": true
 }
