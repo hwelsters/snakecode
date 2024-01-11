@@ -49,5 +49,11 @@
     "@types/react-dom": "18.2.7",
     "eslint-config-snakecode-base": "^1.0.0",
     "storybook": "7.4.0"
+  },
+  "nextBundleAnalysis": {
+    "budget": null,
+    "budgetPercentIncreaseRed": 20,
+    "minimumChangeThreshold": 0,
+    "showDetails": true
   }
 }
