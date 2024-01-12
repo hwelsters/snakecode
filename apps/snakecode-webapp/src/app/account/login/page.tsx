@@ -1,3 +1,5 @@
+"use client";
+
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
 import { Auth } from "aws-amplify";
 

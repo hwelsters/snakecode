@@ -1,6 +1,11 @@
+// I am using this for now because I do not currently know a way to get the path of the current page and
+// I don't want to have to hardcode the path in the href attribute of the Link component.
+
+"use client";
+
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { addPathSegment } from "@/utils/addPathSegment";
 
@@ -17,7 +22,6 @@ type CourseButtonParams = {
 };
 
 export default function CourseButton({ title, type, href }: CourseButtonParams) {
-  const router = useRouter();
   const bgColor = () => {
     if (type === CourseButtonType.COMPLETED) return "bg-pc dark:bg-pc";
     if (type === CourseButtonType.FUTURE) return "bg-pt";
@@ -38,9 +42,9 @@ export default function CourseButton({ title, type, href }: CourseButtonParams) 
 
   return (
     <div className="flex w-fit flex-col items-center">
-      <button className={`h-12 w-12 -translate-y-2 rounded-sm ${bgColor()} ${shadowColor()} active:translate-y-0 active:shadow-none`} type="button" onClick={() => router.push(addPathSegment(href))}>
+      <Link className={`flex h-12 w-12 -translate-y-2 items-center justify-center rounded-sm ${bgColor()} ${shadowColor()} active:translate-y-0 active:shadow-none`} href={addPathSegment(href)}>
         {icon()}
-      </button>
+      </Link>
 
       <span className="mt-1 font-display">{title}</span>
     </div>
