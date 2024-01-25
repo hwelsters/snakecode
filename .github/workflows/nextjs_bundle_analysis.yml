@@ -5,12 +5,9 @@ name: 'Next.js Bundle Analysis'
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [main]
 
 defaults:
   run:
@@ -32,6 +29,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
